@@ -13,7 +13,7 @@ function reducer(state, action) {
   }
 }
 
-const padNum = (num) => num.length === 1 ? `0${num}` : num;
+const padNum = (num) => `${num}`.length === 1 ? `0${num}` : num;
 
 function getTime() {
   const date = new Date();
@@ -23,7 +23,7 @@ function getTime() {
 const EventSandbox = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const newLog = (msg) => dispatch({ type: "prepend", log: `${getTime()} - ${msg}` });
-  const onKeyUp = evt => newLog(`KeyUp code: ${evt.keyCode}`);
+  const onKeyUp = evt => newLog(`Keyup code: ${evt.keyCode}`);
   const onBlur = () => newLog("Input blurred");
   const onFocus = () => newLog("Input focused");
 
@@ -35,15 +35,17 @@ const EventSandbox = () => {
         <div className="es__capture">
           <input
             className="es__input"
+            data-testid="es-input"
             placeholder="Interact here"
             onFocus={onFocus}
             onKeyUp={onKeyUp}
             onBlur={onBlur}
           />
         </div>
-        <div className="es__logs">
+
+        <div className="es__logs" data-testid="es-logs">
           {state.logs.map((log, i) => (
-            <div key={i} className="es__log">
+            <div key={i} className="es__log" data-testid="es-log">
               {log}
             </div>
           ))}

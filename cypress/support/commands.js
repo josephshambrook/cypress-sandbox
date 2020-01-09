@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("getTestId", id => cy.get(`[data-testid="${id}"]`));
+
+Cypress.Commands.add("triggerLogs", ($n) => {
+  Array($n).fill().forEach(() => {
+    cy.getTestId('es-input').focus();
+  });
+})

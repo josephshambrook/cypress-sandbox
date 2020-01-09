@@ -1,22 +1,9 @@
-describe('A useful describe', () => {
+describe('Assertions', () => {
   before(() => {
-    cy.log('I run once before all tests in this describe');
     cy.visit('/');
   });
 
-  after(function() {
-    cy.log('I run once after all tests in this describe');
-  });
-
-  beforeEach(function() {
-    cy.log('I run before each test in this describe');
-  });
-
-  afterEach(function() {
-    cy.log('I run after each test in this describe');
-  });
-
-  describe('Assertion styles', () => {
+  context('Assertion styles', () => {
     it('checks the text using an implicit assertion - i.e. .should()', () => {
       // the arguments for .should() are from Chai-jQuery
       // https://www.chaijs.com/plugins/chai-jquery/
@@ -52,7 +39,7 @@ describe('A useful describe', () => {
     });
   });
 
-  describe('Selecting elements', () => {
+  context('Selecting elements', () => {
     it('uses the .get() method to get elements', () => {
       cy.get('h1').should('be.visible');
     });
@@ -63,7 +50,7 @@ describe('A useful describe', () => {
       cy.get('div[id="root"] h1').should('be.visible');
     });
 
-    it('should however target specific attributes added for testing', () => {
+    it('should however **target specific attributes added for testing**', () => {
       // see why here: https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements
       cy.get('[data-testid="header-main"]').should('be.visible');
     });

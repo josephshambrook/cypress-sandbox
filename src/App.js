@@ -6,10 +6,8 @@ import "./styles.css";
 const App = () => (
   <>
     <h1 data-testid="header-main">Cypress Sandbox</h1>
-
-    <HackerNews />
-
     <EventSandbox />
+    <HackerNews />
   </>
 );
 

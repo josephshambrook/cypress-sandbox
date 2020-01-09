@@ -13,20 +13,19 @@ function reducer(state, action) {
   }
 }
 
+const padNum = (num) => num.length === 1 ? `0${num}` : num;
+
+function getTime() {
+  const date = new Date();
+  return `${padNum(date.getHours())}:${padNum(date.getMinutes())}:${padNum(date.getSeconds())}`;
+}
+
 const EventSandbox = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const onKeyUp = evt => {
-    dispatch({ type: "prepend", log: `KeyUp code: ${evt.keyCode}` });
-  };
-
-  const onBlur = () => {
-    dispatch({ type: "prepend", log: "Input blurred" });
-  };
-
-  const onFocus = evt => {
-    dispatch({ type: "prepend", log: "Input focused" });
-  };
+  const newLog = (msg) => dispatch({ type: "prepend", log: `${getTime()} - ${msg}` });
+  const onKeyUp = evt => newLog(`KeyUp code: ${evt.keyCode}`);
+  const onBlur = () => newLog("Input blurred");
+  const onFocus = () => newLog("Input focused");
 
   return (
     <>

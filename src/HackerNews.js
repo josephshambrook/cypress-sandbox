@@ -24,7 +24,7 @@ const HackerNews = () => {
   }
 
   if (loading) {
-    return <div>Loading Hacker News...</div>
+    return <h2>Loading Hacker News...</h2>
   }
 
   const { by, score, title, url } = data;

@@ -23,6 +23,10 @@ const HackerNews = () => {
     return null;
   }
 
+  if (loading) {
+    return <div>Loading Hacker News...</div>
+  }
+
   const { by, score, title, url } = data;
 
   return (

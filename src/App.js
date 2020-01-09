@@ -5,7 +5,7 @@ import "./styles.css";
 
 const App = () => (
   <>
-    <h1>Cypress Sandbox</h1>
+    <h1 data-testid="header-main">Cypress Sandbox</h1>
 
     <HackerNews />
 

@@ -10,21 +10,33 @@ const HackerNews = () => {
     const fetchData = async () => {
       setLoading(true);
       const topStories = await axios(TOP_STORIES);
+
+      if (topStories.status !== 200) {
+        return Promise.reject('topstories API request errored');
+      }
+
       const topItem = topStories.data[0];
-      const result = await axios(GET_ITEM(topItem));
-      setData(result.data);
+      const itemDetails = await axios(GET_ITEM(topItem));
+
+      if (itemDetails.status !== 200) {
+        return Promise.reject('item API request errored');
+      }
+
+      setData(itemDetails.data);
       setLoading(false);
     };
 
-    fetchData();
+    fetchData().catch(() => setLoading(false));
   }, []);
 
-  if (!data) {
-    return null;
+  if (loading) {
+    return (
+      <h2 data-testid="hn-loading">Loading Hacker News...</h2>
+    );
   }
 
-  if (loading) {
-    return <h2>Loading Hacker News...</h2>
+  if (!data || Object.keys(data).length === 0) {
+    return null;
   }
 
   const { by, score, title, url } = data;
@@ -33,8 +45,9 @@ const HackerNews = () => {
     <>
       <h2>Top story from Hacker News</h2>
 
-      <div className="hn-card">
+      <div className="hn-card" data-testid="hn-card">
         <div className="hn-card__title">{title}</div>
+
         <div className="hn-card__meta">
           {score} points | by {by}
         </div>
@@ -44,6 +57,7 @@ const HackerNews = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="hn-card__link"
+          data-testid="hn-card-link"
         >
           Visit &rarr;
         </a>

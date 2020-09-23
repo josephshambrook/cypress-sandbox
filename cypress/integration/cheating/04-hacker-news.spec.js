@@ -1,4 +1,4 @@
-import { TOP_STORIES } from '../../src/urls';
+import { TOP_STORIES } from '../../../src/urls';
 
 describe('Hacker News', () => {
   context('API requests slow', () => {

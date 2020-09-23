@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { TOP_STORIES, GET_ITEM } from "./urls";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { TOP_STORIES, GET_ITEM } from './urls';
 
 const HackerNews = () => {
   const [data, setData] = useState({});
@@ -30,9 +30,7 @@ const HackerNews = () => {
   }, []);
 
   if (loading) {
-    return (
-      <h2 data-testid="hn-loading">Loading Hacker News...</h2>
-    );
+    return <h2 data-testid="hn-loading">Loading Hacker News...</h2>;
   }
 
   if (!data || Object.keys(data).length === 0) {

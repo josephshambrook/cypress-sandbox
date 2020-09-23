@@ -1,31 +1,34 @@
-import React, { useReducer } from "react";
+import React, { useReducer } from 'react';
 
 const initialState = {
-  logs: []
+  logs: [],
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case "prepend":
+    case 'prepend':
       return { logs: [action.log, ...state.logs.slice(0, 4)] };
     default:
       return state;
   }
 }
 
-const padNum = (num) => `${num}`.length === 1 ? `0${num}` : num;
+const padNum = (num) => (`${num}`.length === 1 ? `0${num}` : num);
 
 function getTime() {
   const date = new Date();
-  return `${padNum(date.getHours())}:${padNum(date.getMinutes())}:${padNum(date.getSeconds())}`;
+  return `${padNum(date.getHours())}:${padNum(date.getMinutes())}:${padNum(
+    date.getSeconds()
+  )}`;
 }
 
 const EventSandbox = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const newLog = (msg) => dispatch({ type: "prepend", log: `${getTime()} - ${msg}` });
-  const onKeyUp = evt => newLog(`Keyup code: ${evt.keyCode}`);
-  const onBlur = () => newLog("Input blurred");
-  const onFocus = () => newLog("Input focused");
+  const newLog = (msg) =>
+    dispatch({ type: 'prepend', log: `${getTime()} - ${msg}` });
+  const onKeyUp = (evt) => newLog(`Keyup code: ${evt.keyCode}`);
+  const onBlur = () => newLog('Input blurred');
+  const onFocus = () => newLog('Input focused');
 
   return (
     <>

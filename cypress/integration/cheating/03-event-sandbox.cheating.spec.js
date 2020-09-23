@@ -24,15 +24,11 @@ describe('Event Sandbox', () => {
 
       cy.getTestId('es-log')
         .eq(0)
-        .should('have.text', "23:59:59 - Input focused");
+        .should('have.text', '23:59:59 - Input focused');
     });
 
     it('creates logs for keyup event with codes', () => {
-      cy.getTestId('es-input')
-        .focus()
-        .type('a')
-        .type('2')
-        .type('{enter}');
+      cy.getTestId('es-input').focus().type('a').type('2').type('{enter}');
 
       cy.getTestId('es-log')
         .eq(0)
@@ -52,7 +48,7 @@ describe('Event Sandbox', () => {
 
       cy.getTestId('es-log')
         .eq(0)
-        .should('have.text', "23:59:59 - Input blurred");
+        .should('have.text', '23:59:59 - Input blurred');
     });
   });
 
@@ -63,15 +59,11 @@ describe('Event Sandbox', () => {
     it('should pad the time numbers correctly', () => {
       cy.triggerLogs(1);
 
-      cy.getTestId('es-log')
-        .eq(0)
-        .should('contain', "23:59:59");
+      cy.getTestId('es-log').eq(0).should('contain', '23:59:59');
 
       cy.tick(1000).triggerLogs(1);
 
-      cy.getTestId('es-log')
-        .eq(0)
-        .should('contain', "00:00:00");
+      cy.getTestId('es-log').eq(0).should('contain', '00:00:00');
     });
 
     it('should only bold the newest log message', () => {
@@ -88,10 +80,7 @@ describe('Event Sandbox', () => {
     });
 
     it('should only show a maximum of 5 log messages', () => {
-      cy.triggerLogs(10)
-        .getTestId('es-logs')
-        .children()
-        .should('be.length', 5);
+      cy.triggerLogs(10).getTestId('es-logs').children().should('be.length', 5);
     });
   });
 });

@@ -18,6 +18,6 @@ const createCustomAssertion = (name, getActual) => {
       actual
     );
   });
-}
+};
 
 export default createCustomAssertion;

@@ -44,7 +44,7 @@ describe('Assertions', () => {
       cy.get('h1').should('be.visible');
     });
 
-    it('accepts any CSS selector available in Chrome', () => {
+    it('accepts any CSS selector', () => {
       cy.get('body h1').should('be.visible');
       cy.get('body #root').should('be.visible');
       cy.get('div[id="root"] h1').should('be.visible');

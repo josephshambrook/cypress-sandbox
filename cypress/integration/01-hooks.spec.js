@@ -4,15 +4,15 @@ describe('Hooks', () => {
     cy.visit('/');
   });
 
-  after(function() {
+  after(function () {
     cy.log('I run once after all tests in this describe');
   });
 
-  beforeEach(function() {
+  beforeEach(function () {
     cy.log('I run before each test in this describe');
   });
 
-  afterEach(function() {
+  afterEach(function () {
     cy.log('I run after each test in this describe');
   });
 

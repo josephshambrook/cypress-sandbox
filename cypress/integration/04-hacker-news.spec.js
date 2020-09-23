@@ -1,28 +1,21 @@
 describe('Hacker News', () => {
   context('API requests slow', () => {
-    before(() => {
-    });
+    before(() => {});
 
-    it('should display the loading title, then replace it with the card', () => {
-    });
+    it('should display the loading title, then replace it with the card', () => {});
   });
 
   context('API calls return errors', () => {
-    it('should display nothing when the topstories URL fails', () => {
-    });
+    it('should display nothing when the topstories URL fails', () => {});
 
-    it('should display nothing when the topstories URL fails', () => {
-    });
+    it('should display nothing when the topstories URL fails', () => {});
   });
 
   context('Card content when API call is successful', () => {
-    beforeEach(() => {
-    });
+    beforeEach(() => {});
 
-    it('displays the item title, author and score', () => {
-    });
+    it('displays the item title, author and score', () => {});
 
-    it('displays a link to the post, which opens in a new tab', () => {
-    });
+    it('displays a link to the post, which opens in a new tab', () => {});
   });
 });

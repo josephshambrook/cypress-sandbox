@@ -1,7 +1,7 @@
-import React from "react";
-import HackerNews from "./HackerNews";
-import EventSandbox from "./EventSandbox";
-import "./styles.css";
+import React from 'react';
+import HackerNews from './HackerNews';
+import EventSandbox from './EventSandbox';
+import './styles.css';
 
 const App = () => (
   <>

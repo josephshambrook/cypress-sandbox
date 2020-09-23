@@ -1,4 +1,4 @@
-import './commands'
+import './commands';
 import { havePlaceholder, haveTestId } from './customAssertions';
 
 havePlaceholder(chai);

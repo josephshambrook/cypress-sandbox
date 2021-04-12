@@ -1,57 +1,37 @@
 import { TOP_STORIES } from '../../../src/urls';
 
 describe('Hacker News', () => {
-  context('API requests slow', () => {
-    before(() => {
-      cy.server({
-        delay: 1000,
-      });
-      cy.route(TOP_STORIES, 'fixture:topstories.json').as('topstories');
-      cy.route('**/item/22008566*', 'fixture:item.json').as('item');
-      cy.visit('/');
-    });
-
-    it('should display the loading title, then replace it with the card', () => {
-      cy.getTestId('hn-loading').should('be.visible');
-      cy.getTestId('hn-card').should('not.be.visible');
-
-      cy.wait('@item');
-      cy.getTestId('hn-loading').should('not.be.visible');
-      cy.getTestId('hn-card').should('be.visible');
-    });
-  });
-
   context('API calls return errors', () => {
     it('should display nothing when the topstories URL fails', () => {
-      cy.server();
-      cy.route({
-        url: TOP_STORIES,
-        status: 404,
-        response: [],
+      cy.intercept(TOP_STORIES, {
+        statusCode: 404,
+        body: [],
       });
-      cy.reload();
-      cy.getTestId('hn-loading').should('not.be.visible');
-      cy.getTestId('hn-card').should('not.be.visible');
+      cy.visit('/');
+
+      cy.getTestId('hn-loading').should('not.exist');
+      cy.getTestId('hn-card').should('not.exist');
     });
 
     it('should display nothing when the topstories URL fails', () => {
-      cy.server();
-      cy.route({
-        url: '**/item/**',
-        status: 404,
-        response: {},
+      cy.intercept('**/item/**', {
+        statusCode: 404,
+        body: {},
       });
-      cy.reload();
-      cy.getTestId('hn-loading').should('not.be.visible');
-      cy.getTestId('hn-card').should('not.be.visible');
+      cy.visit('/');
+
+      cy.getTestId('hn-loading').should('not.exist');
+      cy.getTestId('hn-card').should('not.exist');
     });
   });
 
   context('Card content when API call is successful', () => {
     beforeEach(() => {
-      cy.server();
-      cy.route(TOP_STORIES, 'fixture:topstories.json').as('topstories');
-      cy.route('**/item/22008566*', 'fixture:item.json').as('item');
+      cy.intercept(TOP_STORIES, { fixture: 'topstories.json' }).as(
+        'topstories'
+      );
+      cy.intercept('**/item/22008566*', { fixture: 'item.json' }).as('item');
+
       cy.visit('/');
       cy.wait('@topstories');
     });
@@ -70,6 +50,28 @@ describe('Hacker News', () => {
         'href',
         'https://news.ycombinator.com/'
       );
+    });
+  });
+
+  context('API requests slow', () => {
+    before(() => {
+      cy.intercept(TOP_STORIES, { fixture: 'topstories.json', delay: 2000 }).as(
+        'topstories'
+      );
+      cy.intercept('**/item/22008566*', {
+        fixture: 'item.json',
+        delay: 2000,
+      }).as('item');
+      cy.visit('/');
+    });
+
+    it('should display the loading title, then replace it with the card', () => {
+      cy.getTestId('hn-loading').should('be.visible');
+      cy.getTestId('hn-card').should('not.exist');
+
+      cy.wait('@item');
+      cy.getTestId('hn-loading').should('not.exist');
+      cy.getTestId('hn-card').should('be.visible');
     });
   });
 });

@@ -1,10 +1,4 @@
 describe('Hacker News', () => {
-  context('API requests slow', () => {
-    before(() => {});
-
-    it('should display the loading title, then replace it with the card', () => {});
-  });
-
   context('API calls return errors', () => {
     it('should display nothing when the topstories URL fails', () => {});
 
@@ -17,5 +11,11 @@ describe('Hacker News', () => {
     it('displays the item title, author and score', () => {});
 
     it('displays a link to the post, which opens in a new tab', () => {});
+  });
+
+  context('API requests slow', () => {
+    before(() => {});
+
+    it('should display the loading title, then replace it with the card', () => {});
   });
 });

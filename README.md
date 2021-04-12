@@ -27,4 +27,4 @@ These functionalities make it possible to test the following in Cypress:
 - In a separate Terminal instance, run `npm run cy:open` to open Cypress' UI.
   - Alternatively, `npm run cy:run` will run all Cypress tests in one go, with recordings and screenshots
 
-> Note: I recommend using iTerm to run separate Terminal instances in split-screen.
+> Note: I recommend using [iTerm](https://iterm2.com/) or [Hyper](https://hyper.is/) to run separate Terminal instances in split-screen.

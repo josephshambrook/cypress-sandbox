@@ -5,17 +5,16 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "^0.24.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
-    "cypress": "^7.0.1"
+    "cypress": "^8.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "cy:verify": "cypress verify",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
